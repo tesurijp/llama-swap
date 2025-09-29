@@ -53,6 +53,12 @@ windows: ui
 	@echo "Building Windows binary..."
 	GOOS=windows GOARCH=amd64 go build -ldflags="-X main.commit=${GIT_HASH} -X main.version=local_${GIT_HASH} -X main.date=${BUILD_DATE}" -o $(BUILD_DIR)/$(APP_NAME)-windows-amd64.exe
 
+# Windows Launcher
+
+windows-launcher:
+	@echo "Building Windows tray launcher binary..."
+	GOOS=windows GOARCH=amd64 go build -ldflags="-H=windowsgui" -o $(BUILD_DIR)/llama-swap-tray.exe misc/win-launcher/llama-swap-tray.go
+
 # for testing proxy.Process
 simple-responder:
 	@echo "Building simple responder"
