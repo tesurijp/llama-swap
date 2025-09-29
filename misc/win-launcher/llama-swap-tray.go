@@ -26,8 +26,9 @@ var (
 
 
 func main() {
-    listenStr = flag.String("listen", ":8080", "listen ip/port")
-    flag.Parse()
+    chkflg := flag.NewFlagSet("llamaSwaps", flag.ContinueOnError)
+    listenStr = chkflg.String("listen", ":8080", "listen ip/port")
+    chkflg.Parse(os.Args[1:])
 
     err := runTargetProgram();
     if( err == nil ) {
